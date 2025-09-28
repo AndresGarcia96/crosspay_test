@@ -1,0 +1,30 @@
+{
+  "name": "crosspay",
+  "version": "1.0.0",
+  "private": true,
+  "description": "<img src=\"./apps/client/public/logos/crosspay-solutions-logo-color.svg\" alt=\"logo-crosspay\">",
+  "main": "index.js",
+  "dependencies": {
+    "turbo": "^2.5.4",
+    "turbo-windows-64": "^2.5.4"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.4"
+  },
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@11.4.2",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

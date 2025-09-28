@@ -26,7 +26,7 @@ export class AuthController {
 
   // REGISTER //
 
-  @Auth(RolesEnum.SUPER_ADMIN)
+  // @Auth(RolesEnum.SUPER_ADMIN)
   @Post('register-super-admin')
   async registerSuperAdmin(@Body() dto: CreateUserDto) {
     return this.authService.registerUserWithRole(RolesEnum.SUPER_ADMIN, dto);
@@ -57,19 +57,17 @@ export class AuthController {
     return this.authService.refreshToken(token);
   }
 
-  @Post('login-admin')
-  async loginAdmin(@Body() dto: LoginDto) {
-    return this.authService.loginUserWithRole(RolesEnum.ADMIN, dto);
+  @Post('login-admin-or-auditor')
+  async loginAdminOrAuditor(@Body() dto: LoginDto) {
+    return this.authService.loginUserWithRole(
+      [RolesEnum.SUPER_ADMIN, RolesEnum.ADMIN, RolesEnum.AUDITOR],
+      dto,
+    );
   }
 
   @Post('login-user')
   async loginUser(@Body() dto: LoginDto) {
-    return this.authService.loginUserWithRole(RolesEnum.USER, dto);
-  }
-
-  @Post('login-auditor')
-  async loginAuditor(@Body() dto: LoginDto) {
-    return this.authService.loginUserWithRole(RolesEnum.AUDITOR, dto);
+    return this.authService.loginUserWithRole([RolesEnum.USER], dto);
   }
 
   @Post('verifyCodeAndLoginAdminOrAuditor/:email')

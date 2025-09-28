@@ -14,10 +14,13 @@ import { join } from 'path';
           host: process.env.MAIL_HOST,
           port: Number(process.env.MAIL_PORT),
           secure: true, // true para 465, false para otros puertos
-          requireTLS: true,
+          requireTLS: false,
           auth: {
             user: process.env.MAIL_USER,
             pass: process.env.MAIL_PASS,
+          },
+          tls: {
+            rejectUnauthorized: false,
           },
         },
         transports: {},

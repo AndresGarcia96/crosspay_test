@@ -42,6 +42,7 @@ export class AuthService {
   ) {}
 
   // REGISTER FUNCTION
+
   async registerUserWithRole(
     userRole: RolesEnum,
     createUserDto: CreateUserDto,
@@ -62,31 +63,39 @@ export class AuthService {
 
     await this.userService.getUserByIdNumberAndRole(id_number, [userRole]);
 
-    return await this.userService.createUser({
-      name,
-      last_name,
-      id_number,
-      email,
-      cellphone,
-      password: await bcryptjs.hash(password, 10),
-      birthdate,
-      residence_department,
-      residence_city,
-      residence_address,
-      residence_neighborhood,
-    });
+    return await this.userService.createUserWithRole(
+      {
+        name,
+        last_name,
+        id_number,
+        email,
+        cellphone,
+        password: await bcryptjs.hash(password, 10),
+        birthdate,
+        residence_department,
+        residence_city,
+        residence_address,
+        residence_neighborhood,
+      },
+      userRole,
+    );
   }
 
   // LOGIN FUNCTION
-  async loginUserWithRole(userRole: RolesEnum, loginDto: LoginDto) {
+
+  async loginUserWithRole(userRoles: RolesEnum[], loginDto: LoginDto) {
     const { email, password } = loginDto;
 
+    const rolesArray = Array.isArray(userRoles) ? userRoles : [userRoles];
+
     const rolesFound = await this.roleRepository.find({
-      where: { name: In([userRole]) },
+      where: { name: In(rolesArray) },
     });
 
     if (!rolesFound.length) {
-      throw new UnauthorizedException(`¡Role ${userRole} no encontrado!`);
+      throw new UnauthorizedException(
+        `¡Roles ${rolesArray.join(', ')} no encontrados!`,
+      );
     }
 
     const bannedUserFound = await this.userRepository.findOne({

@@ -19,7 +19,7 @@ export class UsersService {
 
   // CREATE FUNTIONS //
 
-  private async createUserWithRole(
+  async createUserWithRole(
     userDto: CreateUserDto,
     userRole: RolesEnum,
   ): Promise<User> {
@@ -66,22 +66,6 @@ export class UsersService {
       where: { id: userSaved.id },
       loadRelationIds: true,
     });
-  }
-
-  async createSuperAdmin(dto: CreateUserDto): Promise<User> {
-    return this.createUserWithRole(dto, RolesEnum.SUPER_ADMIN);
-  }
-
-  async createAdmin(dto: CreateUserDto): Promise<User> {
-    return this.createUserWithRole(dto, RolesEnum.ADMIN);
-  }
-
-  async createUser(dto: CreateUserDto): Promise<User> {
-    return this.createUserWithRole(dto, RolesEnum.USER);
-  }
-
-  async createAuditor(dto: CreateUserDto): Promise<User> {
-    return this.createUserWithRole(dto, RolesEnum.AUDITOR);
   }
 
   // GET FUNTIONS //

@@ -14,6 +14,8 @@ import {
 
 import { Role } from '@/role/entities/role.entity';
 
+import { IdentificationTypeEnum } from '@/utils/enums/id_type/identification_type.enum';
+
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
@@ -25,13 +27,19 @@ export class User {
   @Column({ type: 'text', nullable: true })
   last_name: string;
 
+  @Column({
+    type: 'enum',
+    enum: IdentificationTypeEnum,
+  })
+  id_type: IdentificationTypeEnum;
+
   @Column({ type: 'text', unique: true })
   id_number: string;
 
   @Column({ type: 'date', nullable: true })
   birthdate: Date;
 
-  @Column({ unique: true })
+  @Column({ unique: true, nullable: true })
   email: string;
 
   @Column({ type: 'bigint', nullable: true })

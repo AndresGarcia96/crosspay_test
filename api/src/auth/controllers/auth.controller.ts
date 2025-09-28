@@ -26,7 +26,7 @@ export class AuthController {
 
   // REGISTER //
 
-  // @Auth(RolesEnum.SUPER_ADMIN)
+  @Auth(RolesEnum.SUPER_ADMIN)
   @Post('register-super-admin')
   async registerSuperAdmin(@Body() dto: CreateUserDto) {
     return this.authService.registerUserWithRole(RolesEnum.SUPER_ADMIN, dto);

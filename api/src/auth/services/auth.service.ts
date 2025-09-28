@@ -50,6 +50,7 @@ export class AuthService {
     const {
       name,
       last_name,
+      id_type,
       id_number,
       email,
       cellphone,
@@ -67,6 +68,7 @@ export class AuthService {
       {
         name,
         last_name,
+        id_type,
         id_number,
         email,
         cellphone,

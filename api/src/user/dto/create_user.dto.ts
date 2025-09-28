@@ -6,8 +6,11 @@ import {
   IsDateString,
   MinLength,
   MaxLength,
+  IsEnum,
 } from 'class-validator';
 import { Transform } from 'class-transformer';
+
+import { IdentificationTypeEnum } from '@/utils/enums/id_type/identification_type.enum';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -23,6 +26,10 @@ export class CreateUserDto {
   @IsOptional()
   @IsDateString()
   birthdate: Date;
+
+  @IsNotEmpty()
+  @IsEnum(IdentificationTypeEnum)
+  id_type: IdentificationTypeEnum;
 
   @IsNotEmpty()
   @IsString()

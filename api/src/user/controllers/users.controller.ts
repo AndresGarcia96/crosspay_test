@@ -46,8 +46,8 @@ export class UsersController {
   }
 
   @Auth(RolesEnum.ADMIN)
-  @Get('/getUserByIdNumber/:idNumber')
-  async getUserByIdNumber(@Param('idNumber') idNumber: string) {
+  @Get('/getAnyUserByIdNumber/:idNumber')
+  async getAnyUserByIdNumber(@Param('idNumber') idNumber: string) {
     return this.usersService.getUserByIdNumber(idNumber);
   }
 
@@ -57,20 +57,6 @@ export class UsersController {
     return this.usersService.getUserRoles(idNumber);
   }
 
-  @Get('/getSuperAdminUserByIdNumber/:idNumber')
-  async getSuperAdminUserByIdNumber(@Param('idNumber') idNumber: string) {
-    return await this.usersService.getUserByIdNumberAndRole(idNumber, [
-      RolesEnum.SUPER_ADMIN,
-    ]);
-  }
-
-  @Get('/getSuperAdminUserByIdNumber/:idNumber')
-  async getAdminsUserByIdNumber(@Param('idNumber') idNumber: string) {
-    return await this.usersService.getUserByIdNumberAndRole(idNumber, [
-      RolesEnum.SUPER_ADMIN,
-    ]);
-  }
-
   @Get('/getAdminUserByIdNumber/:idNumber')
   async getAdminUserByIdNumber(@Param('idNumber') idNumber: string) {
     return await this.usersService.getUserByIdNumberAndRole(idNumber, [
@@ -78,8 +64,8 @@ export class UsersController {
     ]);
   }
 
-  @Get('/getCollaboratorUserByIdNumber/:idNumber')
-  async getCollaboratorUserByIdNumber(@Param('idNumber') idNumber: string) {
+  @Get('/getUserByIdNumber/:idNumber')
+  async getUserByIdNumber(@Param('idNumber') idNumber: string) {
     return await this.usersService.getUserByIdNumberAndRole(idNumber, [
       RolesEnum.USER,
     ]);

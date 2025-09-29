@@ -8,7 +8,7 @@ import AdminHeaderLayout from "@/components/admin/header_layout_dashboard/AdminH
 import { Button, Col, Layout, Menu, Row, theme } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { ItemKeys } from "./enums/item_names_and_keys.enums";
-import { useMenuItems } from "@/components/admin/items_menu_dashboard_admin/items_menu_dashboard_admin";
+import { useMenuItems } from "./items_menu_dashboard_admin/items_menu_dashboard_admin";
 import {
   setSelectedKey,
   setSelectedOpenKeys,
@@ -39,7 +39,7 @@ const CustomDashboardLayoutAdmins: React.FC<{
   const handleMenuClick = (key: string) => {
     dispatch(setSelectedKey(key));
 
-    router.push(`/admin/dashboard/${key}`);
+    router.push(`/admin/${key}`);
   };
 
   const handleOpenChange: any = (keys: string[]) => {
@@ -89,14 +89,18 @@ const CustomDashboardLayoutAdmins: React.FC<{
             overflow: "hidden",
           }}
           onClick={() => {
-            router.replace("/admin/dashboard/all_user", { scroll: true });
+            router.replace("/admin/all_transactions", { scroll: true });
           }}
         >
           <img
-            src={collapsed ? "/logos/icono.png" : "/logos/logo_horizontal.png"}
-            alt="Logo de Bonnadona Hub"
+            src={
+              collapsed
+                ? "/logos/crosspay-solutions-icono-color.png"
+                : "/logos/crosspay-solutions-logo-color.svg"
+            }
+            alt="Logo de Crosspay"
             style={{
-              maxWidth: collapsed ? "62%" : "76%",
+              maxWidth: collapsed ? "62%" : "88%",
               height: "auto",
               objectFit: "contain",
             }}
@@ -108,7 +112,7 @@ const CustomDashboardLayoutAdmins: React.FC<{
           mode="inline"
           items={items}
           selectedKeys={[selectedKeyState]}
-          defaultSelectedKeys={[ItemKeys.ITEM_USERS_KEY]}
+          defaultSelectedKeys={[ItemKeys.ITEM_ALL_TRANSACTIONS_KEY]}
           openKeys={selectedOpenKeysState}
           onOpenChange={handleOpenChange}
           onClick={({ key }) => handleMenuClick(key)}
@@ -230,7 +234,9 @@ const CustomDashboardLayoutAdmins: React.FC<{
           }}
         >
           {customLayoutFooter ||
-            `Clínica Bonnadona © ${new Date().getFullYear()} - Versión: ${process.env.NEXT_PUBLIC_APP_VERSION}`}
+            `Crosspay © ${new Date().getFullYear()} - Versión: ${
+              process.env.NEXT_PUBLIC_APP_VERSION
+            }`}
         </Footer>
       </Layout>
     </Layout>

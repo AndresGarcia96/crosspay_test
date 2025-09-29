@@ -36,14 +36,14 @@ export const userApi = createApi({
       }),
     }),
 
-    getUserById: builder.query<IUser, string>({
+    getUserById: builder.query<IUser, string | null>({
       query: (id) => ({
         url: `getUserById/${id}`,
         method: "GET",
       }),
     }),
 
-    getAnyUserByIdNumber: builder.query<IUser, string>({
+    getAnyUserByIdNumber: builder.query<IUser, string | null>({
       query: (idNumber) => ({
         url: `getAnyUserByIdNumber/${idNumber}`,
         method: "GET",

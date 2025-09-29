@@ -17,6 +17,7 @@ const initialState: ITransaction = {
   createdAt: "",
   updatedAt: "",
   deletedAt: null,
+  errors: [],
 };
 
 export const transactionSlice = createSlice({

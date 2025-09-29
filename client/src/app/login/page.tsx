@@ -70,7 +70,7 @@ const UsersLoginPage = () => {
         >
           <img
             src="/logos/crosspay-solutions-logo-color.svg"
-            alt="Logo de Bonnadona"
+            alt="Logo de CrossPay"
             style={{ height: "77px" }}
           />
         </div>

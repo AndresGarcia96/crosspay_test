@@ -17,4 +17,5 @@ export interface ITransaction {
   createdAt: string;
   updatedAt: string;
   deletedAt?: string | null;
+  errors?: string[];
 }

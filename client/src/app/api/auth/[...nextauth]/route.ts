@@ -172,7 +172,7 @@ export const GET = async (req: any, res: any) => {
     },
     session: {
       strategy: "jwt",
-      maxAge: parseInt(process.env.NEXTAUTH_SESSION_MAXAGE ?? "130", 10),
+      maxAge: parseInt(process.env.NEXTAUTH_SESSION_MAXAGE ?? "777", 10),
     },
   });
 };

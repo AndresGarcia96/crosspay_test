@@ -33,9 +33,6 @@ export class TransactionService {
 
     const transaction = this.transactionRepository.create({
       ...transactionDto,
-      paying_username: user.name,
-      paying_user_id_number: user.id_number,
-      paying_user_id_type: user.id_type,
       user,
     });
 

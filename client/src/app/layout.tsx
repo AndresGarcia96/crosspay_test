@@ -7,8 +7,8 @@ import { ConfigProvider } from "antd";
 import themeConfig from "@/theme/themeConfig";
 import es_ES from "antd/locale/es_ES";
 import { Providers } from "@/redux/providers";
+import SessionAuthProvider from "@/context/SessionAuthProvider";
 import "./globals.css";
-import "@ant-design/v5-patch-for-react-19";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -27,9 +27,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <Providers>
           <main className="container-main-app">
             <AntdRegistry>
-              <ConfigProvider theme={themeConfig} locale={es_ES}>
-                {children}
-              </ConfigProvider>
+              <SessionAuthProvider>
+                <ConfigProvider theme={themeConfig} locale={es_ES}>
+                  {children}
+                </ConfigProvider>
+              </SessionAuthProvider>
             </AntdRegistry>
           </main>
         </Providers>

@@ -1,9 +1,9 @@
-"use client";
++"use client";
 
 import React, { ReactNode } from "react";
 
 import { Button } from "antd";
-import { ButtonHTMLType, ButtonShape, ButtonType } from "antd/es/button";
+import { ButtonHTMLType, ButtonType, ButtonShape } from "antd/es/button";
 import { SizeType } from "antd/es/config-provider/SizeContext";
 
 const CustomButton: React.FC<{
@@ -14,10 +14,10 @@ const CustomButton: React.FC<{
   classNameCustomButton?: string;
   sizeCustomButton: SizeType;
   titleTooltipCustomButton?: string | undefined;
-  styleCustomButton?: React.CSSProperties | undefined;
+  styleCustomButton: React.CSSProperties | undefined;
   iconCustomButton?: ReactNode;
-  iconPositionCustomButton?: "start" | "end";
   shapeCustomButton?: ButtonShape;
+  iconPositionCustomButton?: "start" | "end";
   formCustomButton?: string | undefined;
   disabledCustomButton?: boolean;
   onClickCustomButton: () => void;
@@ -33,8 +33,8 @@ const CustomButton: React.FC<{
   styleCustomButton,
   iconCustomButton,
   iconPositionCustomButton,
-  shapeCustomButton,
   formCustomButton,
+  shapeCustomButton,
   disabledCustomButton,
   onClickCustomButton,
   onMouseDownCustomButton,
@@ -43,15 +43,15 @@ const CustomButton: React.FC<{
     <Button
       id={idCustomButton}
       className={classNameCustomButton}
-      title={titleTooltipCustomButton}
       type={typeCustomButton}
+      title={titleTooltipCustomButton}
       size={sizeCustomButton}
       htmlType={htmlTypeCustomButton || "button"}
       style={styleCustomButton}
       icon={iconCustomButton}
       iconPosition={iconPositionCustomButton}
-      shape={shapeCustomButton}
       form={formCustomButton}
+      shape={shapeCustomButton}
       disabled={disabledCustomButton}
       onClick={onClickCustomButton}
       onMouseDown={onMouseDownCustomButton}

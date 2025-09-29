@@ -5,6 +5,7 @@ import storage from "./storage/storage";
 
 import userReducer from "./features/user/userSlice";
 import transactionReducer from "./features/transaction/transactionSlice";
+import modalReducer from "./features/common/modal/modalSlice";
 
 import { authLoginApi } from "./apis/login_user/loginUserApi";
 import { authRegisterApi } from "./apis/register_user/registerUserApi";
@@ -21,6 +22,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   transaction: transactionReducer,
+  modal: modalReducer,
   [authLoginApi.reducerPath]: authLoginApi.reducer,
   [authRegisterApi.reducerPath]: authRegisterApi.reducer,
   [userApi.reducerPath]: userApi.reducer,

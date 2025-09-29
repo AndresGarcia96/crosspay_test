@@ -55,12 +55,12 @@ export const authLoginApi = createApi({
 
     resendVerificationUserCode: builder.mutation<
       Partial<IUser>,
-      { principal_email: string }
+      { email: string }
     >({
-      query: ({ principal_email }) => ({
+      query: ({ email }) => ({
         url: "resendVerificationUserCode",
         method: "POST",
-        body: { principal_email },
+        body: { email },
       }),
     }),
   }),

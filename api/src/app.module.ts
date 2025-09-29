@@ -8,6 +8,7 @@ require('dotenv').config();
 import { UserModule } from './user/users.module';
 import { AuthModule } from './auth/auth.module';
 import { RoleModule } from './role/role.module';
+import { TransactionModule } from './transaction/transaction.module';
 
 @Module({
   imports: [
@@ -19,14 +20,15 @@ import { RoleModule } from './role/role.module';
       password: process.env.TYPEORM_PASSWORD,
       database: process.env.TYPEORM_DATABASE,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
-      autoLoadEntities: true,
+      synchronize: false,
+      autoLoadEntities: false,
       logging: false,
     }),
     AppModule,
     UserModule,
     AuthModule,
     RoleModule,
+    TransactionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

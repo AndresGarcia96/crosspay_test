@@ -304,16 +304,18 @@ export class AuthService {
     };
   }
 
-  async verifyCodeAndLoginAdmin(email: string, code: number) {
-    return this.verifyCodeAndLoginForRoles(email, code, [
+  async verifyCodeAndLoginAdmin(email: string, verification_code: number) {
+    return this.verifyCodeAndLoginForRoles(email, verification_code, [
       RolesEnum.SUPER_ADMIN,
       RolesEnum.ADMIN,
       RolesEnum.AUDITOR,
     ]);
   }
 
-  async verifyCodeAndLoginUser(email: string, code: number) {
-    return this.verifyCodeAndLoginForRoles(email, code, [RolesEnum.USER]);
+  async verifyCodeAndLoginUser(email: string, verification_code: number) {
+    return this.verifyCodeAndLoginForRoles(email, verification_code, [
+      RolesEnum.USER,
+    ]);
   }
 
   async resendVerificationUserCode({ email }: EmailDto) {

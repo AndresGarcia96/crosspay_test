@@ -13,6 +13,7 @@ import {
 } from 'typeorm';
 
 import { Role } from '@/role/entities/role.entity';
+import { Transaction } from '@/transaction/entities/transaction.entity';
 
 import { IdentificationTypeEnum } from '@/utils/enums/id_type/identification_type.enum';
 
@@ -72,6 +73,9 @@ export class User {
 
   @Column({ type: 'boolean', default: true })
   is_active: boolean;
+
+  @OneToMany(() => Transaction, (tx) => tx.user)
+  transactions: Transaction[];
 
   @CreateDateColumn()
   createdAt: Date;

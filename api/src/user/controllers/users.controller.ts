@@ -28,31 +28,31 @@ export class UsersController {
   // GET METHODS //
 
   @Auth(RolesEnum.ADMIN)
-  @Get()
+  @Get('/getAllUsers')
   async getAllUsers() {
     return this.usersService.getAllUsers();
   }
 
   @Auth(RolesEnum.ADMIN)
-  @Get('all-active-users')
+  @Get('/getAllActiveUsers')
   async getAllActiveUsers() {
     return this.usersService.getAllActiveUsers();
   }
 
   @Auth(RolesEnum.ADMIN)
-  @Get(':id')
+  @Get('/getUserById:id')
   async getUserById(@Param('id') id: string) {
     return this.usersService.getUserById(id);
   }
 
   @Auth(RolesEnum.ADMIN)
-  @Get('id-number/:idNumber')
+  @Get('/getUserByIdNumber/:idNumber')
   async getUserByIdNumber(@Param('idNumber') idNumber: string) {
     return this.usersService.getUserByIdNumber(idNumber);
   }
 
   @Auth(RolesEnum.ADMIN)
-  @Get('roles/:idNumber')
+  @Get('/getUserRoles/:idNumber')
   async getUserRoles(@Param('idNumber') idNumber: string) {
     return this.usersService.getUserRoles(idNumber);
   }
@@ -95,7 +95,7 @@ export class UsersController {
   // PATCH METHODS //
 
   @Auth(RolesEnum.ADMIN)
-  @Patch('update-user/:id')
+  @Patch('/updateUser/:id')
   async updateUser(
     @Param('id') id: string,
     @Body() updateUserDto: UpdateUserDto,
@@ -104,7 +104,7 @@ export class UsersController {
   }
 
   @Auth(RolesEnum.ADMIN)
-  @Patch('ban-user/:id')
+  @Patch('/banUser/:id')
   async banUser(@Param('id') id: string) {
     return this.usersService.banUser(id);
   }

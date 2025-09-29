@@ -23,7 +23,7 @@ export class RoleController {
   // POST METHODS //
 
   @Auth(RolesEnum.SUPER_ADMIN, RolesEnum.ADMIN)
-  @Post('/create')
+  @Post('/createRole')
   createRole(@Body() createRole: CreateRoleDto) {
     return this.roleService.createRole(createRole);
   }
@@ -43,7 +43,7 @@ export class RoleController {
   // PATCH METHODS //
 
   @Auth(RolesEnum.SUPER_ADMIN, RolesEnum.ADMIN)
-  @Patch('/update/:id')
+  @Patch('/updateRole/:id')
   updateRole(@Param('id') id: number, @Body() updateRole: UpdateRoleDto) {
     return this.roleService.updateRole(id, updateRole);
   }

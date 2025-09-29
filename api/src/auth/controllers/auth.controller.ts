@@ -27,37 +27,37 @@ export class AuthController {
   // REGISTER //
 
   @Auth(RolesEnum.SUPER_ADMIN)
-  @Post('register-super-admin')
+  @Post('/register-super-admin')
   async registerSuperAdmin(@Body() dto: CreateUserDto) {
     return this.authService.registerUserWithRole(RolesEnum.SUPER_ADMIN, dto);
   }
 
   @Auth(RolesEnum.SUPER_ADMIN)
-  @Post('register-admin')
+  @Post('/register-admin')
   async registerAdmin(@Body() dto: CreateUserDto) {
     return this.authService.registerUserWithRole(RolesEnum.ADMIN, dto);
   }
 
-  @Post('register-user')
+  @Post('/registerUser')
   async registerUser(@Body() dto: CreateUserDto) {
     return this.authService.registerUserWithRole(RolesEnum.USER, dto);
   }
 
-  @Post('register-auditor')
+  @Post('/registerAuditor')
   async registerAuditor(@Body() dto: CreateUserDto) {
     return this.authService.registerUserWithRole(RolesEnum.AUDITOR, dto);
   }
 
   // LOGIN //
 
-  @Post('refreshToken')
+  @Post('/refreshToken')
   async refreshToken(@Req() request: Request) {
     const [type, token] = request.headers['authorization']?.split(' ') || [];
 
     return this.authService.refreshToken(token);
   }
 
-  @Post('login-admin-or-auditor')
+  @Post('/loginAdminOrAuditor')
   async loginAdminOrAuditor(@Body() dto: LoginDto) {
     return this.authService.loginUserWithRole(
       [RolesEnum.SUPER_ADMIN, RolesEnum.ADMIN, RolesEnum.AUDITOR],
@@ -65,12 +65,12 @@ export class AuthController {
     );
   }
 
-  @Post('login-user')
+  @Post('/loginUser')
   async loginUser(@Body() dto: LoginDto) {
     return this.authService.loginUserWithRole([RolesEnum.USER], dto);
   }
 
-  @Post('verifyCodeAndLoginAdminOrAuditor/:email')
+  @Post('/verifyCodeAndLoginAdminOrAuditor/:email')
   async verifyCodeAndLoginAdminOrAuditor(
     @Param('email') email: string,
     @Body('verification_code') verification_code: number,
@@ -81,7 +81,7 @@ export class AuthController {
     );
   }
 
-  @Post('verifyCodeAndLoginUser/:email')
+  @Post('/verifyCodeAndLoginUser/:email')
   async verifyCodeAndLoginUser(
     @Param('email') email: string,
     @Body('verification_code') verification_code: number,
@@ -92,7 +92,7 @@ export class AuthController {
     );
   }
 
-  @Post('resendVerificationUserCode')
+  @Post('/resendVerificationUserCode')
   async resendVerificationUserCode(@Body() principal_email: EmailDto) {
     return await this.authService.resendVerificationUserCode(principal_email);
   }

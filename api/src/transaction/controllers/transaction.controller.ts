@@ -16,14 +16,14 @@ import { RolesEnum } from '@/utils/enums/roles/roles.enum';
 
 @ApiTags('transaction')
 @ApiBearerAuth()
-// @Auth(RolesEnum.SUPER_ADMIN)
+@Auth(RolesEnum.SUPER_ADMIN)
 @Controller('transaction')
 export class TransactionController {
   constructor(private readonly transactionService: TransactionService) {}
 
   // POST METHODS //
 
-  // @Auth(RolesEnum.ADMIN, RolesEnum.USER)
+  @Auth(RolesEnum.ADMIN, RolesEnum.USER)
   @Post('/createTransaction/:userId')
   createTransaction(
     @Param('userId') userId: string,

@@ -4,7 +4,10 @@ import { persistReducer } from "redux-persist";
 import storage from "./storage/storage";
 
 import userReducer from "./features/user/userSlice";
+import transactionReducer from "./features/transaction/transactionSlice";
 
+import { authLoginApi } from "./apis/login_user/loginUserApi";
+import { authRegisterApi } from "./apis/register_user/registerUserApi";
 import { userApi } from "./apis/user/userApi";
 
 const persistConfig = {
@@ -17,6 +20,9 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user: userReducer,
+  transaction: transactionReducer,
+  [authLoginApi.reducerPath]: authLoginApi.reducer,
+  [authRegisterApi.reducerPath]: authRegisterApi.reducer,
   [userApi.reducerPath]: userApi.reducer,
 });
 
@@ -28,7 +34,11 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
       immutableCheck: false,
-    }).concat([userApi.middleware]),
+    }).concat([
+      authLoginApi.middleware,
+      authRegisterApi.middleware,
+      userApi.middleware,
+    ]),
 });
 
 setupListeners(store.dispatch);
